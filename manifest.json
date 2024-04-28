@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "GoCanvas Wizard",
+  "version": "1.0",
+  "description": "An extension to view and download PDFs from specific tabs.",
+  "permissions": ["activeTab", "scripting", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "./images/AllianceLogo-16.png",
+    "32": "./images/AllianceLogo-32.png",
+    "128": "./images/AllianceLogo-128.png"
+  }
+}
