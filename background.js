@@ -33,6 +33,16 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
       }
     );
   }
+  // else if (message.action === "compileHiltiLabels") {
+  //   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  //     if (tabs.length > 0) {
+  //       chrome.scripting.executeScript({
+  //         target: { tabId: tabs[0].id },
+  //         function: compileHiltiLabelsFunction,
+  //       });
+  //     }
+  //   });
+  // }
 });
 
 function viewFunction() {
@@ -70,16 +80,6 @@ function downloadFunction() {
 
   console.log("Download PDF link not found");
 }
-
-// function viewFunction() {
-//   // Insert code here
-//   console.log("view");
-// }
-
-// function downloadFunction() {
-//   // Insert code here
-//   console.log("download");
-// }
 
 function extractFireDamperValuesForExcel() {
   // Select all <dl> tags on the current webpage
@@ -126,3 +126,54 @@ function extractFireDamperValuesForExcel() {
   console.log(`Total: ${values.length}`);
   console.log(`${tds}: ${totalDampersSurveyed}`);
 }
+
+function compileHiltiLabelsFunction() {
+  let markingsList = CategoryMarkingsArray.getMarkingsList();
+  let sortedItemLabels = markingsList
+    .map((marking) => marking.itemLabel)
+    .sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+  let formattedItemLabels = sortedItemLabels.join("\n");
+  console.log(formattedItemLabels);
+}
+
+// function compileHiltiLabelsFunction() {
+//   function waitForCategoryMarkingsArray() {
+//     return new Promise((resolve) => {
+//       const checkInterval = setInterval(() => {
+//         if (
+//           typeof CategoryMarkingsArray !== "undefined" &&
+//           typeof CategoryMarkingsArray.getMarkingsList === "function"
+//         ) {
+//           clearInterval(checkInterval);
+//           resolve();
+//         }
+//       }, 100);
+//     });
+//   }
+
+//   async function run() {
+//     await waitForCategoryMarkingsArray();
+
+//     try {
+//       const script = `
+//         let markingsList = CategoryMarkingsArray.getMarkingsList();
+
+//         // Step 2: Extract and sort the itemLabels as strings
+//         let sortedItemLabels = markingsList
+//           .map((marking) => marking.itemLabel) // Extract itemLabels as strings
+//           .sort((a, b) => parseInt(a, 10) - parseInt(b, 10)); // Sort numerically
+
+//         // Step 3: Format the itemLabels for easy copying and pasting
+//         let formattedItemLabels = sortedItemLabels.join("\\n");
+
+//         // Step 4: Log the formatted itemLabels
+//         console.log(formattedItemLabels);
+//       `;
+//       eval(script);
+//     } catch (error) {
+//       console.error("An error occurred while executing the script:", error);
+//     }
+//   }
+
+//   run();
+// }

@@ -33,6 +33,31 @@
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.spinner-border {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 0.2em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Stagger animation delay */
 button:nth-child(3) {
   animation-delay: 0.2s; /* Delay for first button */
@@ -48,7 +73,7 @@ html {
 body {
   background: #83ad37;
   width: 200px;
-  height: 235px;
+  height: 310px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -58,17 +83,18 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
-  display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 2px 2px 6px black inset;
   transition: all 0.5s ease-in-out;
 }
-
+.wrapper {
+  max-width: 80%;
+}
 button {
-  padding: 10px;
-  margin-bottom: 7px;
-  min-width: 80%;
+  padding: 10px 10px 10px 0;
+  margin-top: 7px;
+  min-width: 100%;
   border: 2px #14699d solid;
   transition: all 0.1s ease-in-out;
   background-color: white;
@@ -102,6 +128,45 @@ h2 {
   /* animation: colorChange 1s infinite alternate; */
   animation: colorChange 1.5s ease-in-out;
   animation-delay: 0.4s;
+  margin: 0;
+  margin-top: 1em;
+}
+
+.note {
+  font-size: 0.8rem;
+  color: white;
+  user-select: none;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.popup-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #14699d;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* .circle-logo {
