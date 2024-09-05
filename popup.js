@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", function () {
       chrome.runtime.sendMessage({ action: "compileDampers" });
     });
+  document
+    .getElementById("compileFSButton")
+    .addEventListener("click", function () {
+      chrome.runtime.sendMessage({ action: "compileFS" });
+    });
   // document
   //   .getElementById("compileHiltiLabelsButton")
   //   .addEventListener("click", function () {

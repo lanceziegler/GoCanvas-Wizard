@@ -73,7 +73,7 @@ html {
 body {
   background: #83ad37;
   width: 200px;
-  height: 310px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
